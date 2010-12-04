@@ -1,0 +1,25 @@
+LongFromString converts a string to a long, without using 
+the most direct built in Java functions.
+
+Steve Baker Beepscore LLC 4 Dec 2010
+
+//////////////
+Specification:
+1) Given a String, write a routine that converts the string to an long, 
+without using the built in Java functions that would do this.
+Describe what (if any) limitations the code has.  For example:
+
+long StringToLong(String s)
+{
+        /* code goes here to convert a string to a long */
+}
+
+void Test()
+{
+   long i = StringToLong("123");
+   if (i == 123)
+       ... success ...
+   else
+       ... failure ...
+}
+///////////
