@@ -25,9 +25,9 @@ void Test()
 ///////////
 
 Limitations:
-Need to know or require a string encoding format.
-Require UTF-8, maximum length 4 bytes = 32 bits.
-Reference: http://en.wikipedia.org/wiki/Utf-8
+String encoding format- Java uses UTF-16 encoding.
+Reference: http://java.sun.com/docs/books/jls/third_edition/html/lexical.html#95413
+http://en.wikipedia.org/wiki/Utf-16
 
 May need to filter input to protect against accidental or purposeful bad input.
 For example, filter out illegal characters, limit input length.
@@ -45,6 +45,7 @@ For example, is long shorter on an Android phone than on Mac OSX?
 "The long data type is a 64-bit signed two's complement integer.
 It has a minimum value of -9,223,372,036,854,775,808 and 
 a maximum value of 9,223,372,036,854,775,807 (inclusive)."
+Long.MAX_VALUE
 Ref: http://download.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html
 
 Do other human languages use different characters for numbers (e.g. Chinese digits)?
