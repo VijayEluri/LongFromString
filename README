@@ -23,3 +23,23 @@ void Test()
        ... failure ...
 }
 ///////////
+
+Limitations:
+May need to filter input to protect against accidental or purposeful bad input.
+For example, filter out illegal characters, limit input length.
+
+Input should be a whole number only.
+
+Assume input is non-negative.  Probably long uses a sign digit that we can ignore.
+
+Input should be base 10 digits 0-9. Don't support other bases such as binary or octal or hexadecimal. 
+
+If number represented by string is longer than type long can hold, output will be invalid.
+
+Java uses JVM, need to check if type long varies by platform. For example, is long shorter on an Android phone than on Mac OSX?
+
+Do other human languages use different characters for numbers (e.g. Chinese digits)?
+Do we want to support non-Arabic numerals?
+It appears that in China, Arabic numerals are now common.  Don't accept non-Arabic numerals.
+Reference: http://en.wikipedia.org/wiki/Chinese_numerals
+
