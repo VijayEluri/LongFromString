@@ -20,7 +20,7 @@ public class LongFromString {
 	}
 	
     // Convert a string to a long
-	static long longFromString(String aString)
+	public static long longFromString(String aString)
 	{
 		long myLong;
 		myLong = 1234;
