@@ -25,16 +25,25 @@ void Test()
 ///////////
 
 Limitations:
-String encoding format- Java uses UTF-16 encoding.
+String must be encoded in UTF-16 format used by Java.
 Reference: http://java.sun.com/docs/books/jls/third_edition/html/lexical.html#95413
 http://en.wikipedia.org/wiki/Utf-16
 
-May need to filter input to protect against accidental or purposeful bad input.
-For example, filter out illegal characters, limit input length.
+Do other human languages use different characters for numbers (e.g. Chinese digits)?
+Do we want to support non-Arabic numerals?
+It appears that in China, Arabic numerals are now common.
+Don't accept non-Arabic numerals.
+Reference: http://en.wikipedia.org/wiki/Chinese_numerals
 
-Input should be a whole number only.
+Input must not contain Unicode supplementary characters.
 
-Assume input is non-negative.  Probably long uses a sign digit that we can ignore.
+Should add input validation to protect against accidental or malicious bad input.
+For example, filter out illegal characters.
+The program does limit input string length.
+
+Input must be a whole number.
+
+Input must be non-negative.  Probably long uses a sign digit that we can ignore.
 
 Input should be base 10 digits 0-9. Don't support other bases such as binary or octal or hexadecimal. 
 
@@ -47,9 +56,4 @@ It has a minimum value of -9,223,372,036,854,775,808 and
 a maximum value of 9,223,372,036,854,775,807 (inclusive)."
 Long.MAX_VALUE
 Ref: http://download.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html
-
-Do other human languages use different characters for numbers (e.g. Chinese digits)?
-Do we want to support non-Arabic numerals?
-It appears that in China, Arabic numerals are now common.  Don't accept non-Arabic numerals.
-Reference: http://en.wikipedia.org/wiki/Chinese_numerals
 

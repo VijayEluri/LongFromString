@@ -24,16 +24,14 @@ public class LongFromString {
 	// Convert character to integer digit 0-9. If error, return -1
 	public static int intDigitFromChar(char aChar)
 	{
-		// type char is represented as 16 bit Unicode UTF-16
+		// type char is an integer, representing a character in 16 bit Unicode UTF-16
 		// ref http://download.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html
 
-		int myDigit;
-
-		// Look for possible Unicode conversion issues.
-		// at a minimum, list them in program limitations		
-
-		myDigit = 3;
-
+		// Possible Unicode conversion issues.
+		// This method cannot handle Unicode supplementary characters
+		// ref http://download.oracle.com/javase/6/docs/api/java/lang/Character.html#digit%28char,%20int%29
+		// digit method second argument radix = 10 says we want result in base 10
+		int myDigit = Character.digit(aChar, 10);
 		return myDigit;
 	}
 	
@@ -109,6 +107,8 @@ public class LongFromString {
 	// TODO: Move these into unit tests JUnit or similar
 	public static void testIntDigitFromChar()
 	{
+		System.out.println("testIntDigitFromChar");
+
 		int actualInt;
 
 		actualInt = intDigitFromChar('0');
@@ -153,6 +153,8 @@ public class LongFromString {
 
 	public static void testLongFromString()
 	{
+		System.out.println("testLongFromString");
+
 		long i;
 
 		i = longFromString("123");
