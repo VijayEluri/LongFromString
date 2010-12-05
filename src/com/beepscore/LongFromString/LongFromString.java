@@ -36,26 +36,72 @@ public class LongFromString {
 
 		return myDigit;
 	}
+	
+
+	// Raise 10 to an integer power.  Power must be <= 18. If error, return -1
+	public static long tenToIntPower(int aPower)
+	{
+		if (aPower > 18)
+		{
+			// result would have > (18+1) digits, too big for type long
+			return -1;
+		}		
+		
+		long tenToPower = 1;
+		
+		for (int i = 0; i < aPower; i++)
+		{
+			tenToPower = 10 * tenToPower;
+		}
+		return tenToPower;
+	}
 
 
-	// Convert a string to a long
+	// Convert a string to a long.  If error, return -1
 	public static long longFromString(String aString)
 	{
-		long myLong;
+		if (aString.length() > 19)
+		{
+			// if no leading zeros, number must be bigger than Long.MAX_VALUE
+			// could warn user to check remove any leading zeros
+			return -1;
+		}
+				
+		char currentChar;
+		int digit = 0;
+		long myLong = 0;
+		long myLongPrevious = 0;
 
-		// General approach:
-		// start from last (rightmost) character in string corresponding to tens power 0 (E0).
 		// loop by character until finish first (leftmost) character 
-		//    or total > Long.MAX_VALUE
-		// get the current character currentChar
-
-		// Call method intDigitFromChar(currentChar)
-
-		// Take value returned by intDigitFromChar(), 
-		// multiply by appropriate power of ten and add product to total
-		// end loop
-
-		myLong = 99;
+		//    or total has wrapped past Long.MAX_VALUE
+		for (int exponentOfTen= 0; exponentOfTen < aString.length(); exponentOfTen++)
+		{
+			// get the current character
+			// start from last (rightmost) character in string
+			// corresponding to "ones" column
+			currentChar = aString.charAt((aString.length() -1) - exponentOfTen);
+			
+			digit = intDigitFromChar(currentChar);
+ 
+			// multiply by appropriate power of ten and add product to total
+			
+			if (-1 == tenToIntPower(exponentOfTen))
+			{
+				return -1;
+			}
+			
+			myLong = myLong + (digit * tenToIntPower(exponentOfTen));
+			
+			// Oops myLong can't exceed max!
+			// if (myLong > Long.MAX_VALUE)...
+			// Will total silently wrap around or noisily throw error?
+			if (myLong < myLongPrevious)
+			{
+				// total exceeded capacity of type long and wrapped around
+				return -1;
+			}
+			myLongPrevious = myLong;
+		}
 		return myLong;
 	}
 
