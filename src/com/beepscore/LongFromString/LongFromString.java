@@ -27,10 +27,17 @@ public class LongFromString {
 		// type char is an integer, representing a character in 16 bit Unicode UTF-16
 		// ref http://download.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html
 
-		// Possible Unicode conversion issues.
-		// This method cannot handle Unicode supplementary characters
+		// Method isDigit(char) works for all Unicode characters
+		// ref http://download.oracle.com/javase/tutorial/i18n/text/charintro.html
+		if (!Character.isDigit(aChar))
+		{
+			// the character isn't a digit in any major human language
+			return -1;
+		}
+		
+		// Method digit(char,int) can't handle Unicode supplementary characters
 		// ref http://download.oracle.com/javase/6/docs/api/java/lang/Character.html#digit%28char,%20int%29
-		// digit method second argument radix = 10 says we want result in base 10
+		// digit method second argument radix = 10 says we want result in base 10		
 		int myDigit = Character.digit(aChar, 10);
 		return myDigit;
 	}
@@ -78,6 +85,11 @@ public class LongFromString {
 			// start from last (rightmost) character in string
 			// corresponding to "ones" column
 			currentChar = aString.charAt((aString.length() -1) - exponentOfTen);
+			
+			if (-1 == intDigitFromChar(currentChar))
+			{
+				return -1;
+			}
 			
 			digit = intDigitFromChar(currentChar);
  
