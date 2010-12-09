@@ -7,8 +7,7 @@ public class LongFromString {
 	 */
 	public static void main(String[] args)
 	{
-		testIntDigitFromChar();
-		testLongFromString();
+		// testIntDigitFromChar();
 	}
 
 	// Convert a string to a long using direct conversion method
@@ -163,7 +162,7 @@ public class LongFromString {
 	}
 
 
-	public static void testLongFromString()
+	public static void testLongFromStringOrig()
 	{
 		System.out.println("testLongFromString");
 
