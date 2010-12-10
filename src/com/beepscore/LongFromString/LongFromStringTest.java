@@ -71,7 +71,11 @@ public class LongFromStringTest {
 
 	@Test
 	public void testTenToIntPower() {
-		//fail("Not yet implemented");
+
+		assertTrue(1 == LongFromString.tenToIntPower(0));
+		assertTrue(10 == LongFromString.tenToIntPower(1));
+		assertTrue(100 == LongFromString.tenToIntPower(2));
+
 	}
 
 	@Test
