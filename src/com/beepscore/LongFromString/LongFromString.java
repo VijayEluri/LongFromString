@@ -61,7 +61,7 @@ public class LongFromString {
 	}
 
 
-	// Convert a string to a long.  If error, return -1
+	// Convert a string to a long.  If error, returns a negative value
 	public static long longFromString(String aString)
 	{
 		if (aString.length() > 19)
@@ -70,6 +70,12 @@ public class LongFromString {
 			// could warn user to check remove any leading zeros
 			return -1;
 		}
+		
+		if (aString.length() == 0)
+		{
+			return -5;
+		}
+
 				
 		char currentChar;
 		int digit = 0;
@@ -87,27 +93,28 @@ public class LongFromString {
 			
 			if (-1 == intDigitFromChar(currentChar))
 			{
-				return -1;
+				return -2;
 			}
 			
 			digit = intDigitFromChar(currentChar);
  
-			// multiply by appropriate power of ten and add product to total
+			// Multiply by appropriate power of ten and add product to total
 			
+			// earlier string length test should prevent this error
 			if (-1 == tenToIntPower(exponentOfTen))
 			{
-				return -1;
+				return -3;
 			}
 			
 			myLong = myLong + (digit * tenToIntPower(exponentOfTen));
 			
-			// Oops myLong can't exceed max!
+			// myLong can't exceed max!
 			// if (myLong > Long.MAX_VALUE)...
-			// Will total silently wrap around or noisily throw error?
+			// Total silently wraps around instead of noisily throwing error.
 			if (myLong < myLongPrevious)
 			{
 				// total exceeded capacity of type long and wrapped around
-				return -1;
+				return -4;
 			}
 			myLongPrevious = myLong;
 		}
