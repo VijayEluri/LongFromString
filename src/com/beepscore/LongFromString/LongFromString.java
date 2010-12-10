@@ -7,7 +7,7 @@ public class LongFromString {
 	 */
 	public static void main(String[] args)
 	{
-		// testIntDigitFromChar();
+
 	}
 
 	// Convert a string to a long using direct conversion method
@@ -112,53 +112,6 @@ public class LongFromString {
 			myLongPrevious = myLong;
 		}
 		return myLong;
-	}
-
-
-	// TODO: Move these into unit tests JUnit or similar
-	public static void testIntDigitFromChar()
-	{
-		System.out.println("testIntDigitFromChar");
-
-		int actualInt;
-
-		actualInt = intDigitFromChar('0');
-		if (0 == actualInt)
-			System.out.println("pass");
-		else
-			System.out.println("fail");
-
-		actualInt = intDigitFromChar('1');
-		if (1 == actualInt)
-			System.out.println("pass");
-		else
-			System.out.println("fail");
-
-		actualInt = intDigitFromChar('2');
-		if (2 == actualInt)
-			System.out.println("pass");
-		else
-			System.out.println("fail");
-
-		actualInt = intDigitFromChar('9');
-		if (9 == actualInt)
-			System.out.println("pass");
-		else
-			System.out.println("fail");
-
-		// if error, intDigitFromChar should return -1
-		actualInt = intDigitFromChar('a');
-		if (-1 == actualInt)
-			System.out.println("pass");
-		else
-			System.out.println("fail");
-
-		// try a Chinese character, can't save file!
-		actualInt = intDigitFromChar('x');
-		if (-1 == actualInt)
-			System.out.println("pass");
-		else
-			System.out.println("fail");
 	}
 
 }
