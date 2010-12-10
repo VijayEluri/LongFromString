@@ -108,9 +108,12 @@ public class LongFromString {
 			
 			myLong = myLong + (digit * tenToIntPower(exponentOfTen));
 			
-			// myLong can't exceed max!
-			// if (myLong > Long.MAX_VALUE)...
-			// Total silently wraps around instead of noisily throwing error.
+			// myLong can't exceed Long.MAX_VALUE, the largest number type long can hold.
+			// Java total silently wraps around instead of noisily throwing error.
+			// Check if the running total value decreases when the next 
+			// most significant digit is added to the total.  That shows 
+			// the total has overflowed.  Don't check the sign bit directly.
+			// Ref: http://download.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html
 			if (myLong < myLongPrevious)
 			{
 				// total exceeded capacity of type long and wrapped around
