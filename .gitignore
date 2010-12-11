@@ -1,8 +1,8 @@
 # ref https://github.com/github/gitignore
 
 # OSX
-.DS_Store?
-Icon?
+.DS_Store
+Icon
 
 # Thumbnails
 ._*
