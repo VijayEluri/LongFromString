@@ -21,6 +21,8 @@ public class LongFromString {
 
 
 	// Convert character to integer digit 0-9. If error, return -1
+	// TODO Use checked exception instead of returning a special value
+	// Ref http://java.sun.com/docs/books/jls/second_edition/html/exceptions.doc.html
 	public static int intDigitFromChar(char aChar)
 	{
 		// type char is an integer, representing a character in 16 bit Unicode UTF-16

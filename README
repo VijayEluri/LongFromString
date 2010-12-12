@@ -39,6 +39,9 @@ Reference: http://en.wikipedia.org/wiki/Chinese_numerals
 If the program recognizes an error, it returns a negative number.
 The tests show several types of inputs that will return an error.
 
+TODO:  Replace error handling from return negative values to using checked exceptions.
+Ref http://java.sun.com/docs/books/jls/second_edition/html/exceptions.doc.html
+
 The program should have input validation to protect against accidental or malicious bad input.
 For example, filter out illegal characters.
 The program limits input string length.
