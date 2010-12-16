@@ -35,14 +35,14 @@ public class LongFromString {
 			// the character isn't a digit in any major human language
 			return -1;
 		}
-		
+
 		// Method digit(char,int) can't handle Unicode supplementary characters
 		// ref http://download.oracle.com/javase/6/docs/api/java/lang/Character.html#digit%28char,%20int%29
 		// digit method second argument radix = 10 says we want result in base 10		
 		int myDigit = Character.digit(aChar, 10);
 		return myDigit;
 	}
-	
+
 
 	// Raise 10 to an integer power.  Power must be <= 18. If error, return -1
 	public static long tenToIntPower(int aPower)
@@ -52,9 +52,9 @@ public class LongFromString {
 			// result would have > (18+1) digits, too big for type long
 			return -1;
 		}		
-		
+
 		long tenToPower = 1;
-		
+
 		for (int i = 0; i < aPower; i++)
 		{
 			tenToPower = 10 * tenToPower;
@@ -64,7 +64,7 @@ public class LongFromString {
 
 
 	// Convert a string to a long.  If error, returns a negative value
-	public static long longFromString(String aString)
+	public static long longFromString(String aString) throws NumberTooBigException
 	{
 		if (aString.length() > 19)
 		{
@@ -72,13 +72,13 @@ public class LongFromString {
 			// could warn user to check remove any leading zeros
 			return -1;
 		}
-		
+
 		if (aString.length() == 0)
 		{
 			return -5;
 		}
 
-				
+
 		char currentChar;
 		int digit = 0;
 		long myLong = 0;
@@ -92,24 +92,24 @@ public class LongFromString {
 			// start from last (rightmost) character in string
 			// corresponding to "ones" column
 			currentChar = aString.charAt((aString.length() -1) - exponentOfTen);
-			
+
 			if (-1 == intDigitFromChar(currentChar))
 			{
 				return -2;
 			}
-			
+
 			digit = intDigitFromChar(currentChar);
- 
+
 			// Multiply by appropriate power of ten and add product to total
-			
+
 			// earlier string length test should prevent this error
 			if (-1 == tenToIntPower(exponentOfTen))
 			{
 				return -3;
 			}
-			
+
 			myLong = myLong + (digit * tenToIntPower(exponentOfTen));
-			
+
 			// myLong can't exceed Long.MAX_VALUE, the largest number type long can hold.
 			// Java total silently wraps around instead of noisily throwing error.
 			// Check if the running total value decreases when the next 
@@ -119,7 +119,9 @@ public class LongFromString {
 			if (myLong < myLongPrevious)
 			{
 				// total exceeded capacity of type long and wrapped around
-				return -4;
+				NumberTooBigException numberTooBig 
+				= new NumberTooBigException("The number is too big.");
+				throw numberTooBig;
 			}
 			myLongPrevious = myLong;
 		}
